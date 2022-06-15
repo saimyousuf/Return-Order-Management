@@ -1,0 +1,42 @@
+<div class="card loginCard">
+  <h5 style="color: red">{{ error }}</h5>
+
+  <h4>Login</h4>
+
+  <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        (change)="usernameFound($event)"
+        ngModel
+        class="form-control"
+        type="text"
+        placeholder="username"
+        name="username"
+      />
+      <small style="color: red">{{ usernameDontExist }}</small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        ngModel
+        class="form-control"
+        [type]="show ? 'text' : 'password'"
+        placeholder="password"
+        name="password"
+      />
+      <a class="btn toggleButton mt-2" (click)="password()"
+        ><strong style="color: rgb(246, 169, 2)">{{
+          show ? "Hide" : "Show"
+        }}</strong></a
+      >
+    </div>
+
+    <div class="loginBtn">
+      <button [disabled]="usernameDontExist != ''" class="btn btn-info">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

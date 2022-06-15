@@ -1,0 +1,97 @@
+<div class="container">
+  <button routerLink="/dashboard" class="btn btn-info mt-2">Back</button>
+
+  <form #returnOrderDetailsForm="ngForm" (ngSubmit)="handleReturnOrderDetailsForm(returnOrderDetailsForm)" class="submitDetailsForm">
+    <h3>Enter Return Order Details</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>UserName</label>
+          <input
+          ngModel
+            type="text"
+            name="userName"
+            placeholder="Enter username"
+            class="form-control"
+            [required]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input
+            ngModel
+            type="number"
+            name="contactNumber"
+            placeholder="Enter contact"
+            class="form-control"
+            [required]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Credit Card Number</label>
+          <input
+            ngModel
+            type="number"
+            name="creditCardNumber"
+            placeholder="Enter credit Card number"
+            class="form-control"
+            [required]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Priority Request</label>
+          <select  ngModel class="form-control" name="isPriorityRequest" [required]="true">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Component Type</label>
+          <select  ngModel class="form-control" name="componentType" [required]="true">
+            <option value="Integral">Integral</option>
+            <option value="Accessory">Accessory</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Component Name</label>
+          <input
+            ngModel
+            type="text"
+            class="form-control"
+            name="componentName"
+            placeholder="Component Name"
+            [required]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Quantity</label>
+          <input
+            ngModel
+            type="range"
+            id="quantity"
+            class="form-control"
+            name="quantity"
+            min="1"
+            max="100"
+            value="1"
+            oninput="amount.value=quantity.value"
+            [required]="true"
+          />
+
+          <output id="amount" name="amount" for="quantity">50</output>
+        </div>
+      </div>
+    </div>
+    <div class="submitDetailsBtn">
+      <button [disabled]="returnOrderDetailsForm.invalid" class="btn btn-success">Submit Details</button>
+    </div>
+  </form>
+</div>

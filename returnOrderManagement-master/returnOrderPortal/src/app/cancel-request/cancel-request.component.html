@@ -1,0 +1,84 @@
+
+<div class="container">
+  <button routerLink="/dashboard" class="btn btn-info mt-2">Back</button>
+  <h3>Cancel Request</h3>
+
+  <div class="form-group">
+    <label>Select Response Id</label>
+    <select
+    ngModel
+      (change)="fetchSingleResponse($event)"
+      class="form-control"
+      name="responseId"
+    >
+      <option *ngFor="let r of responseRequests" [value]="r.requestId">
+        {{ r.requestId }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Select Credit Card Number</label>
+    <select
+    ngModel
+      (change)="fetchSingleRequest($event)"
+      class="form-control"
+      name="responseId"
+    >
+      <option *ngFor="let p of processRequest" [value]="p.creditCardNumber">
+        {{ p.creditCardNumber }}
+      </option>
+    </select>
+  </div>
+
+  <div
+    *ngIf="deleteResponseDetailObject.requestId"
+    class="card bg-info text-white"
+  >
+    <div class="card-body">
+      <h4 class="card-title">
+        <strong style="color: red">Request ID:</strong>
+        {{ deleteResponseDetailObject.requestId }}
+      </h4>
+      <p class="card-text">
+        Processing Charge : {{ deleteResponseDetailObject.processingCharge }}
+      </p>
+      <p class="card-text">
+        Packaging and Delivery Charge :
+        {{ deleteResponseDetailObject.packagingAndDeliveryCharge }}
+      </p>
+      <p class="card-text">
+        Delivery Date : {{ deleteResponseDetailObject.dateOfDelivery | date }}
+      </p>
+      
+    </div>
+  </div>
+
+  <div
+    *ngIf="responseRequestObject.creditCardNumber"
+    class="card bg-primary text-white mt-3"
+  >
+    <div class="card-body">
+      <h4 class="card-title">
+        <strong style="color: red">Credit Card Number:</strong>
+        {{ responseRequestObject.creditCardNumber }}
+      </h4>
+      <p class="card-text">Username : {{ responseRequestObject.userName }}</p>
+      <p class="card-text">
+        Contact Number: {{ responseRequestObject.contactNumber }}
+      </p>
+      <p class="card-text">
+        Component Name : {{ responseRequestObject.componentName }}
+      </p>
+      <p class="card-text">
+        Component Type : {{ responseRequestObject.componentType }}
+      </p>
+      
+    </div>
+  </div>
+  
+  <div>
+    <button (click)="removeRequest(deleteResponseDetailObject.requestId , responseRequestObject.creditCardNumber)" *ngIf="deleteResponseDetailObject.requestId && responseRequestObject.creditCardNumber" class="btn btn-danger mt-2 mb-3"><strong>Cancel Request</strong></button>
+  </div>
+
+</div>

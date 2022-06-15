@@ -1,0 +1,22 @@
+<div class="container">
+    <button routerLink="/dashboard" class="btn btn-info mt-2">Back</button>
+    <h3 class="mt-2">Track A request</h3>
+
+    <div *ngIf="showAlert" class="alert alert-success">
+        <strong>{{trackResponse}}  <h4 *ngIf="deliveryDate !== undefined">{{deliveryDate | date}}</h4></strong>
+      </div>
+       
+    <form #trackForm="ngForm" (ngSubmit)="trackRequest(trackForm)">
+        <div class="form-group">
+            <label>Enter request id</label>
+            <input ngModel type="text" class="form-control" name="requestId" placeholder="Request-Id" [required]="true" />  
+        </div>
+ 
+        <div class="trackBtn">
+            <button class="btn btn-success trackBtn">Track</button>
+        </div>
+       
+
+    </form>
+
+</div>

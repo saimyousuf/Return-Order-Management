@@ -1,0 +1,56 @@
+<div class="container">
+  <button routerLink="/dashboard" class="btn btn-info mt-2">Back</button>
+  <h3>Confirm Processing</h3>
+  <div *ngIf="showAlert" class="alert alert-success">
+    <strong>{{responseMessage}}</strong>
+  </div>
+  <form
+    #completeProcessingForm="ngForm"
+    (ngSubmit)="processingForm(completeProcessingForm)"
+  >
+    <div class="form-group">
+      <label>Select Request Id:</label>
+      <select
+        ngModel
+        (change)="fetchProcessCharge($event)"
+        class="form-control"
+        name="requestId"
+        [required]="true"
+      >
+        
+        <option *ngFor="let r of responseRequests" [value]="r.requestId">
+          {{ r.requestId }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select Credit Card Number:</label>
+      <select ngModel class="form-control" name="creditCardNumber"  [required]="true">
+       
+        <option *ngFor="let p of processRequest" [value]="p.creditCardNumber">
+          {{ p.creditCardNumber }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Total Processing Fees:</label>
+      <input
+        ngModel
+        [(ngModel)]="processCharge"
+        type="number"
+        name="totalProcessingCharges"
+        class="form-control"
+        [readonly]="true"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Enter Credit Limit:</label>
+      <input ngModel type="number" name="CreditLimit" class="form-control" [required]="true"/>
+    </div>
+
+    <button [disabled]="completeProcessingForm.invalid" class="btn btn-primary">CompleteProcessing</button>
+  </form>
+</div>
